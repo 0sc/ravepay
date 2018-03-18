@@ -2,6 +2,8 @@ package rave
 
 import "fmt"
 
+// Payment is a type that encapsulates rave's concept of payment
+// together with PaymentVerfication it contains required implementations for interacting with the payment APIs
 type Payment struct {
 	// PBFPubKey         string `json:"PBFPubKey"`
 	Amount            int    `json:"amount"`
