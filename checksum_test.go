@@ -28,7 +28,7 @@ func TestCalculateChecksum(t *testing.T) {
 					CustomerFirstname: "Temi",
 					CustomerLastname:  "Adelewa",
 					CustomerPhone:     "234099940409",
-					Txref:             "MG-1500041286295",
+					TxRef:             "MG-1500041286295",
 				},
 				prefix: []byte("FLWPUBK-e634d14d9ded04eaf05d5b63a0a06d2f-X"),
 				suffix: []byte("FLWSECK-bb971402072265fb156e90a3578fe5e6-X"),

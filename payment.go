@@ -15,7 +15,7 @@ type Payment struct {
 	CustomerLastname  string `json:"customer_lastname"`
 	CustomerPhone     string `json:"customer_phone"`
 	PaymentMethod     string `json:"payment_method"`
-	Txref             string `json:"txref"`
+	TxRef             string `json:"txref"`
 }
 
 const (
@@ -130,7 +130,7 @@ func (pvc *PaymentVerificationChecklist) Verify() bool {
 	// TODO: Validate checklist???
 	// Make request to endpoint
 	pvc.PaymentVerification = &PaymentVerification{}
-	err := sendRequest("POST", pvc.PaymentVerificationURL, pvc, pvc.PaymentVerification)
+	err := sendRequestAndParseResponse("POST", pvc.PaymentVerificationURL, pvc, pvc.PaymentVerification)
 	pvc.Done = true
 
 	if err != nil {
