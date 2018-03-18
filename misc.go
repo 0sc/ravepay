@@ -35,13 +35,20 @@ func sendRequestAndParseResponse(mtd, url string, payload, respObj interface{}) 
 }
 
 func sendRequest(mtd, url string, payload interface{}) (*http.Response, error) {
-	body, err := json.Marshal(payload)
-	if err != nil {
-		log.Println("Error marshalling request payload: ", err)
-		return nil, err
+	var req *http.Request
+	var err error
+
+	if payload != nil {
+		body, err := json.Marshal(payload)
+		if err != nil {
+			log.Println("Error marshalling request payload: ", err)
+			return nil, err
+		}
+		req, err = http.NewRequest(mtd, url, bytes.NewBuffer(body))
+	} else {
+		req, err = http.NewRequest(mtd, url, nil)
 	}
 
-	req, err := http.NewRequest(mtd, url, bytes.NewBuffer(body))
 	if err != nil {
 		log.Println("Error occured while creating request", err)
 		return nil, err
@@ -50,5 +57,4 @@ func sendRequest(mtd, url string, payload interface{}) (*http.Response, error) {
 	req.Header.Set("Content-Type", "application/json")
 	client := &http.Client{}
 	return client.Do(req)
-
 }
