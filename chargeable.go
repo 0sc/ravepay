@@ -129,8 +129,7 @@ func (cr *ChargeRequest) Charge(chargeable Chargeable) (*ChargeResponse, error) 
 	return resp, err
 }
 
-// Validate handles the final part to a card charge
-// it validates the charge card request using the provided otp
+// Validate handles the final part to a resource charge using the provided otp
 // returns the server response
 func (cr *ChargeResponse) Validate(otp string) (*ChargeValidationResponse, error) {
 	if cr.PBFPubKey == "" {

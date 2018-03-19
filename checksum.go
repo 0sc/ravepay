@@ -10,7 +10,7 @@ import (
 // CalculateChecksum implements rave's checksum integrity check for inline js
 // https://flutterwavedevelopers.readme.io/docs/checksum
 // To use with a payment payload, provide the payment object as the payload interface
-// and the payment PBFPubKey and your secret key as byte prefix and suffix respectively
+// add the payment PBFPubKey and your secret key as byte prefix and suffix respectively
 func CalculateChecksum(payload interface{}, prefix, suffix []byte) string {
 	value := reflect.Indirect(reflect.ValueOf(payload))
 

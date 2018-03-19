@@ -9,9 +9,9 @@ import (
 // It has all account attributes necessary for rave api card references
 // It also implements the chargable interface required for making charge requests and validating them
 type Account struct {
-	AccountBank          string `json:"accountbank"`
+	AccountBank          string `json:"account_bank"`
 	AccountIsBlacklisted int    `json:"account_is_blacklisted"`
-	AccountNumber        string `json:"accountnumber"`
+	AccountNumber        string `json:"account_number"`
 	AccountToken         struct {
 		Token string `json:"token"`
 	} `json:"account_token"`
@@ -38,7 +38,7 @@ func (a *Account) ChargeURL() string {
 }
 
 // ValidateChargeURL is an implemenation of the Chargeable interface
-// it returns the url to be used for charging the given account
+// it returns the url to be used for validating charge on the given account
 func (a *Account) ValidateChargeURL() string {
 	if a.ValidateAccountChargeURL == "" {
 		a.ValidateAccountChargeURL = ValidateAccountChargeURL
