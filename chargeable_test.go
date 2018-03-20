@@ -62,7 +62,7 @@ func TestChargeRequest_Charge(t *testing.T) {
 			want: &ChargeResponse{
 				Message: "V-COMP",
 				Status:  "success",
-				Data: ChargeResponseData{
+				Data: chargeResponseData{
 					AccountID:     134,
 					IP:            "::ffff:127.0.0.1",
 					Amount:        300,
@@ -124,7 +124,7 @@ func TestChargeRequest_Charge(t *testing.T) {
 			want: &ChargeResponse{
 				Message:           "AUTH_SUGGESTION",
 				Status:            "success",
-				Data:              ChargeResponseData{SuggestedAuth: "PIN"},
+				Data:              chargeResponseData{SuggestedAuth: "PIN"},
 				ValidateChargeURL: server.URL,
 			},
 			serverResp: suggestedAuthCardChargeResponse,
@@ -142,7 +142,7 @@ func TestChargeRequest_Charge(t *testing.T) {
 			want: &ChargeResponse{
 				Message: "BIN not Found",
 				Status:  "error",
-				Data: ChargeResponseData{
+				Data: chargeResponseData{
 					Code:    "BIN_ERR",
 					Message: "BIN not Found",
 				},
@@ -165,7 +165,7 @@ func TestChargeRequest_Charge(t *testing.T) {
 			want: &ChargeResponse{
 				Message: "V-COMP",
 				Status:  "success",
-				Data: ChargeResponseData{
+				Data: chargeResponseData{
 					AccountID:     134,
 					IP:            "::ffff:127.0.0.1",
 					Amount:        300,
@@ -229,7 +229,7 @@ func TestChargeRequest_Charge(t *testing.T) {
 			want: &ChargeResponse{
 				Message:           "accountnumber is required",
 				Status:            "error",
-				Data:              ChargeResponseData{},
+				Data:              chargeResponseData{},
 				ValidateChargeURL: server.URL,
 			},
 			serverResp: failedAccountChargeResponse,
@@ -271,7 +271,7 @@ func TestChargeResponse_Validate(t *testing.T) {
 	defer server.Close()
 
 	type fields struct {
-		Data              ChargeResponseData
+		Data              chargeResponseData
 		ValidateChargeURL string
 		PBFPubKey         string
 	}
@@ -290,7 +290,7 @@ func TestChargeResponse_Validate(t *testing.T) {
 			name: "returns the charge card request response",
 			fields: fields{
 				PBFPubKey: "FLWPUBK-e634d14d9ded04eaf05d5b63a0a06d2f-X",
-				Data: ChargeResponseData{
+				Data: chargeResponseData{
 					FlwRef: "FLW-MOCK-902e0201437d6b20e5b7e2b3ec140967",
 				},
 				ValidateChargeURL: server.URL,
@@ -307,7 +307,7 @@ func TestChargeResponse_Validate(t *testing.T) {
 			name: "returns the charge account request response",
 			fields: fields{
 				PBFPubKey: "FLWPUBK-e634d14d9ded04eaf05d5b63a0a06d2f-X",
-				Data: ChargeResponseData{
+				Data: chargeResponseData{
 					FlwRef: "ACHG-1521409773573",
 				},
 				ValidateChargeURL: server.URL,

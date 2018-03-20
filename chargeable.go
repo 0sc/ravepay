@@ -26,29 +26,29 @@ type ChargeRequest struct {
 
 // ChargeResponse is a type of rave response to a charge card request
 type ChargeResponse struct {
-	Data              ChargeResponseData `json:"data"`
+	Data              chargeResponseData `json:"data"`
 	Message           string             `json:"message"`
 	Status            string             `json:"status"`
 	ValidateChargeURL string             `json:"-"`
 	PBFPubKey         string             `json:"-"`
 }
 
-// ChargeResponseData is a representation of the nested data attribute in a charge card request response
+// chargeResponseData is a representation of the nested data attribute in a charge card request response
 // These attributes will not be availabe in all request response
 // Each request will only have attributes that are relevant to it
-type ChargeResponseData struct {
+type chargeResponseData struct {
 	AccountID                     int                  `json:"AccountId"`
 	IP                            string               `json:"IP"`
 	Acctvalrespcode               interface{}          `json:"acctvalrespcode"`
 	Acctvalrespmsg                interface{}          `json:"acctvalrespmsg"`
 	Amount                        int                  `json:"amount"`
-	Appfee                        int                  `json:"appfee"`
+	Appfee                        float64              `json:"appfee"`
 	AuthModelUsed                 string               `json:"authModelUsed"`
 	Authurl                       string               `json:"authurl"`
 	ChargeResponseCode            string               `json:"chargeResponseCode"`
 	ChargeResponseMessage         string               `json:"chargeResponseMessage"`
 	ChargeType                    string               `json:"charge_type"`
-	ChargedAmount                 int                  `json:"charged_amount"`
+	ChargedAmount                 float64              `json:"charged_amount"`
 	Code                          string               `json:"code"`
 	CreatedAt                     string               `json:"createdAt"`
 	Currency                      string               `json:"currency"`
@@ -97,7 +97,7 @@ type ChargeValidationResponse struct {
 			Responsecode    string `json:"responsecode"`
 			Responsemessage string `json:"responsemessage"`
 		} `json:"data"`
-		Tx ChargeResponseData `json:"tx"`
+		Tx chargeResponseData `json:"tx"`
 	} `json:"data"`
 	Message string `json:"message"`
 	Status  string `json:"status"`
