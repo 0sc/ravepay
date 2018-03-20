@@ -76,7 +76,6 @@ func TestCapturePreAuthPayment(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			capturePreAuthURL = server.URL
 			handler.resp = []byte(tt.respBody)
-			secKey = "FLWSECK-c51891678d48c39eff3701ff686bdb69-X"
 
 			got, err := CapturePreAuthPayment(tt.args.ref)
 			if (err != nil) != tt.wantErr {
@@ -134,7 +133,6 @@ func TestRefundPreAuthPayment(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			voidorRefundPreAuthURL = server.URL
 			handler.resp = []byte(tt.respBody)
-			secKey = "FLWSECK-c51891678d48c39eff3701ff686bdb69-X"
 
 			got, err := RefundPreAuthPayment(tt.args.ref)
 			if (err != nil) != tt.wantErr {
@@ -192,7 +190,6 @@ func TestVoidPreAuthPayment(t *testing.T) {
 		t.Run(tt.name, func(t *testing.T) {
 			voidorRefundPreAuthURL = server.URL
 			handler.resp = []byte(tt.respBody)
-			secKey = "FLWSECK-c51891678d48c39eff3701ff686bdb69-X"
 
 			got, err := VoidPreAuthPayment(tt.args.ref)
 			if (err != nil) != tt.wantErr {

@@ -69,7 +69,7 @@ func VoidPreAuthPayment(ref string) (*PreAuthResponse, error) {
 		Action string `json:"action"`
 		FlwRef string `json:"ref"`
 		SECKEY string `json:"SECKEY"`
-	}{"void", SecretKeyg, ref}
+	}{"void", SecretKey, ref}
 
 	err := sendRequestAndParseResponse("POST", voidorRefundPreAuthURL, payload, resp)
 

@@ -171,3 +171,7 @@ var successfulPreAuthPaymentRefundResponse = `{"status":"success","message":"Ref
 var failedPreAuthPaymentRefundResponse = `{"status":"error","message":"No transaction found","data":{"code":"NO_TX","message":"No transaction found"}}`
 
 var getFeeResponse = `{"status":"success","message":"Charged fee","data":{"charge_amount":"1052.50","fee":52.5,"merchantfee":"0","ravefee":"52.5"}}`
+
+var successfulRefundTxnResponse = `{"data":{"AmountRefunded":15,"walletId":976,"createdAt":"2017-12-18T11:19:15.000Z","AccountId":832,"id":76,"FlwRef":"FLW-MOCK-f129ce9ac1fe993091795ce08c43fb9b","TransactionId":57898,"status":"completed","updatedAt":"2017-12-18T11:19:15.000Z"},"message":"Refunded","status":"success"}`
+
+var failedRefundTxnResponse = `{"status":"error","message":"No transaction found","data":{"code":"NO_TX","message":"No transaction found"}}`

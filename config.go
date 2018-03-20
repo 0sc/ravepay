@@ -14,4 +14,5 @@ const (
 	CapturePreAuthPaymentURL          = "http://flw-pms-dev.eu-west-1.elasticbeanstalk.com/flwv3-pug/getpaidx/api/capture"
 	VoidorRefundPreAuthURL            = "http://flw-pms-dev.eu-west-1.elasticbeanstalk.com/flwv3-pug/getpaidx/api/refundorvoid"
 	GetFeeURL                         = "http://flw-pms-dev.eu-west-1.elasticbeanstalk.com/flwv3-pug/getpaidx/api/fee"
+	RefundTxnURL                      = "http://flw-pms-dev.eu-west-1.elasticbeanstalk.com/gpx/merchant/transactions/refund"
 )
