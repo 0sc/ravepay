@@ -14,7 +14,7 @@ func CapturePreAuthPayment(ref string) (*ChargeResponse, error) {
 	payload := struct {
 		SECKEY string `json:"SECKEY"`
 		FlwRef string `json:"flwRef"`
-	}{secKey, ref}
+	}{SecretKey, ref}
 
 	err := sendRequestAndParseResponse("POST", capturePreAuthURL, payload, resp)
 
@@ -52,7 +52,7 @@ func RefundPreAuthPayment(ref string) (*PreAuthResponse, error) {
 		Action string `json:"action"`
 		FlwRef string `json:"ref"`
 		SECKEY string `json:"SECKEY"`
-	}{"refund", secKey, ref}
+	}{"refund", SecretKey, ref}
 
 	err := sendRequestAndParseResponse("POST", voidorRefundPreAuthURL, payload, resp)
 
@@ -69,7 +69,7 @@ func VoidPreAuthPayment(ref string) (*PreAuthResponse, error) {
 		Action string `json:"action"`
 		FlwRef string `json:"ref"`
 		SECKEY string `json:"SECKEY"`
-	}{"void", secKey, ref}
+	}{"void", SecretKeyg, ref}
 
 	err := sendRequestAndParseResponse("POST", voidorRefundPreAuthURL, payload, resp)
 
