@@ -175,3 +175,7 @@ var getFeeResponse = `{"status":"success","message":"Charged fee","data":{"charg
 var successfulRefundTxnResponse = `{"data":{"AmountRefunded":15,"walletId":976,"createdAt":"2017-12-18T11:19:15.000Z","AccountId":832,"id":76,"FlwRef":"FLW-MOCK-f129ce9ac1fe993091795ce08c43fb9b","TransactionId":57898,"status":"completed","updatedAt":"2017-12-18T11:19:15.000Z"},"message":"Refunded","status":"success"}`
 
 var failedRefundTxnResponse = `{"status":"error","message":"No transaction found","data":{"code":"NO_TX","message":"No transaction found"}}`
+
+var forexRateWithAmountResponse = `{"status":"success","message":"Rate Fetched","data":{"rate":385,"origincurrency":"USD","destinationcurrency":"NGN","lastupdated":"2017-05-29 13:03:35","converted_amount":7707700,"original_amount":"20020"}}`
+
+var forexRateWithoutAmountResponse = `{"status":"success","message":"Rate Fetched","data":{"rate":385,"origincurrency":"USD","destinationcurrency":"NGN","lastupdated":"2017-05-29 13:03:35"}}`
