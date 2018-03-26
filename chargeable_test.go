@@ -72,27 +72,27 @@ func TestChargeRequest_Charge(t *testing.T) {
 					ChargeResponseCode:            "02",
 					ChargeResponseMessage:         "Success-Pending-otp-validation",
 					ChargeType:                    "normal",
-					ChargedAmount:                 300,
-					CreatedAt:                     "2018-03-18T01:15:22.000Z",
-					Currency:                      "NGN",
-					CustomerID:                    20322,
-					Cycle:                         "one-time",
-					DeviceFingerprint:             "69e6b7f0sb72037aa8428b70fbe03986c",
-					FlwRef:                        "FLW-MOCK-0cd9a725cf2ad31303299840f5a0896a",
-					FraudStatus:                   "ok",
-					ID:                            113247,
-					Merchantbearsfee:              1,
-					Narration:                     "FLW-PBF CARD Transaction ",
-					OrderRef:                      "URF_1521335722082_4111335",
-					PaymentID:                     "861",
-					PaymentType:                   "card",
-					RaveRef:                       "RV31521335720694ADC5E86652",
-					RedirectURL:                   "N/A",
-					Status:                        "success-pending-validation",
-					TxRef:                         "MXX-ASC-4578",
-					UpdatedAt:                     "2018-03-18T01:15:24.000Z",
-					Vbvrespcode:                   "00",
-					Vbvrespmessage:                "Approved. Successful",
+					// ChargedAmount:                 300,
+					CreatedAt:         "2018-03-18T01:15:22.000Z",
+					Currency:          "NGN",
+					CustomerID:        20322,
+					Cycle:             "one-time",
+					DeviceFingerprint: "69e6b7f0sb72037aa8428b70fbe03986c",
+					FlwRef:            "FLW-MOCK-0cd9a725cf2ad31303299840f5a0896a",
+					FraudStatus:       "ok",
+					ID:                113247,
+					Merchantbearsfee:  1,
+					Narration:         "FLW-PBF CARD Transaction ",
+					OrderRef:          "URF_1521335722082_4111335",
+					PaymentID:         "861",
+					PaymentType:       "card",
+					RaveRef:           "RV31521335720694ADC5E86652",
+					RedirectURL:       "N/A",
+					Status:            "success-pending-validation",
+					TxRef:             "MXX-ASC-4578",
+					UpdatedAt:         "2018-03-18T01:15:24.000Z",
+					Vbvrespcode:       "00",
+					Vbvrespmessage:    "Approved. Successful",
 				},
 				ValidateChargeURL: server.URL,
 			},
@@ -175,10 +175,10 @@ func TestChargeRequest_Charge(t *testing.T) {
 					ChargeResponseCode:            "02",
 					ChargeResponseMessage:         "Pending OTP validation",
 					ChargeType:                    "normal",
-					ChargedAmount:                 300,
-					CreatedAt:                     "2018-03-18T19:41:50.000Z",
-					Currency:                      "NGN",
-					CustomerID:                    20385,
+					// ChargedAmount:                 300,
+					CreatedAt:  "2018-03-18T19:41:50.000Z",
+					Currency:   "NGN",
+					CustomerID: 20385,
 					Customer: Customer{
 						AccountID: 134,
 						CreatedAt: "2018-03-18T19:41:50.000Z",
@@ -235,6 +235,61 @@ func TestChargeRequest_Charge(t *testing.T) {
 			serverResp: failedAccountChargeResponse,
 			wantErr:    false,
 		},
+		{
+			name: "returns response if charge mpesa request succeeds",
+			fields: fields{
+				PBFPubKey:         "FLWPUBK-e634d14d9ded04eaf05d5b63a0a06d2f-X",
+				Amount:            300,
+				Email:             "tester@flutter.co",
+				IP:                "103.238.105.185",
+				TxRef:             "'MXX-ASC-4578",
+				DeviceFingerprint: "69e6b7f0sb72037aa8428b70fbe03986c",
+				PaymentType:       "mpesa",
+			},
+			args: args{
+				chargeable: &Mpesa{
+					Currency:       "KES",
+					Country:        "KE",
+					FirstName:      "jsksk",
+					LastName:       "ioeoe",
+					IsMpesa:        "1",
+					ChargeMpesaURL: server.URL,
+				},
+			},
+			want: &ChargeResponse{
+				Message: "V-COMP",
+				Status:  "success",
+				Data: chargeResponseData{
+					AccountID:         134,
+					Amount:            300,
+					AuthModelUsed:     "VBVSECURECODE",
+					Authurl:           "N/A",
+					BusinessNumber:    "637747",
+					ChargeType:        "normal",
+					CreatedAt:         "2018-03-26T00:35:14.000Z",
+					Currency:          "KES",
+					CustomerID:        21338,
+					Cycle:             "one-time",
+					DeviceFingerprint: "69e6b7f0sb72037aa8428b70fbe03986c",
+					FlwRef:            "N/A",
+					FraudStatus:       "ok",
+					ID:                118399,
+					IP:                "::ffff:127.0.0.1",
+					Narration:         "FLW-PBF MPESA Transaction ",
+					OrderRef:          "8518284687",
+					PaymentID:         "N/A",
+					PaymentType:       "mpesa",
+					RedirectURL:       "http://127.0.0",
+					Status:            "pending",
+					TxRef:             "'MXX-ASC-4578",
+					UpdatedAt:         "2018-03-26T00:35:14.000Z",
+					Vbvrespcode:       "N/A",
+					Vbvrespmessage:    "N/A",
+				},
+			},
+			serverResp: successfulMpesaChargeResponse,
+			wantErr:    false,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -259,13 +314,13 @@ func TestChargeRequest_Charge(t *testing.T) {
 				return
 			}
 			if !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("ChargeRequest.Charge() = %v, want %v", got, tt.want)
+				t.Errorf("ChargeRequest.Charge() = %+v, want %+v", got, tt.want)
 			}
 		})
 	}
 }
 
-func TestChargeResponse_Validate(t *testing.T) {
+func TestChargeResponse_OTPValidation(t *testing.T) {
 	handler := &testServer{}
 	server := httptest.NewServer(handler)
 	defer server.Close()
@@ -330,14 +385,14 @@ func TestChargeResponse_Validate(t *testing.T) {
 			}
 			handler.resp = []byte(tt.serverResp)
 
-			got, err := cr.Validate(tt.args.otp)
+			got, err := cr.OTPValidation(tt.args.otp)
 			if (err != nil) != tt.wantErr {
-				t.Errorf("ChargeResponse.Validate() error = %v, wantErr %v", err, tt.wantErr)
+				t.Errorf("ChargeResponse.OTPValidation() error = %v, wantErr %v", err, tt.wantErr)
 				return
 			}
 
 			if got.Message != tt.want.Message || got.Status != tt.want.Status {
-				t.Errorf("ChargeCardResponse.Validate() = %v, want %v", got, tt.want)
+				t.Errorf("ChargeCardResponse.OTPValidation() = %v, want %v", got, tt.want)
 			}
 		})
 	}
@@ -356,3 +411,5 @@ var failedAccountChargeResponse = `{"status":"error","message":"accountnumber is
 var successfulValidateChargeCardResponse = `{"status":"success","message":"Charge Complete","data":{"data":{"responsecode":"00","responsemessage":"successful"},"tx":{"id":113257,"txRef":"'MXX-ASC-4578","orderRef":"URF_1521341698263_4239435","flwRef":"FLW-MOCK-902e0201437d6b20e5b7e2b3ec140967","redirectUrl":"N/A","device_fingerprint":"69e6b7f0sb72037aa8428b70fbe03986c","settlement_token":null,"cycle":"one-time","amount":300,"charged_amount":300,"appfee":0,"merchantfee":0,"merchantbearsfee":1,"chargeResponseCode":"00","raveRef":"RV315213416971663EF7A02220","chargeResponseMessage":"Success-Pending-otp-validation","authModelUsed":"PIN","currency":"NGN","IP":"::ffff:127.0.0.1","narration":"FLW-PBF CARD Transaction ","status":"successful","vbvrespmessage":"successful","authurl":"http://flw-pms-dev.eu-west-1.elasticbeanstalk.com/mockvbvpage?ref=FLW-MOCK-902e0201437d6b20e5b7e2b3ec140967&code=00&message=Approved. Successful&receiptno=RN1521341698308","vbvrespcode":"00","acctvalrespmsg":null,"acctvalrespcode":null,"paymentType":"card","paymentPlan":null,"paymentPage":null,"paymentId":"861","fraud_status":"ok","charge_type":"normal","is_live":0,"createdAt":"2018-03-18T02:54:58.000Z","updatedAt":"2018-03-18T02:55:10.000Z","deletedAt":null,"customerId":20331,"AccountId":134,"customer":{"id":20331,"phone":null,"fullName":"Anonymous customer","customertoken":null,"email":"tester@flutter.co","createdAt":"2018-03-18T02:54:57.000Z","updatedAt":"2018-03-18T02:54:57.000Z","deletedAt":null,"AccountId":134},"chargeToken":{"user_token":"9b9c3","embed_token":"flw-t0-349218908feb91c1dda7ca991a4a4b3a-m03k"}}}}`
 
 var successfulValidateChargeAccountResponse = `{"status":"success","message":"Charge Complete","data":{"id":113767,"txRef":"'MXX-ASC-4578","orderRef":"URF_1521409772957_2716735","flwRef":"ACHG-1521409773573","redirectUrl":"http://127.0.0","device_fingerprint":"69e6b7f0sb72037aa8428b70fbe03986c","settlement_token":null,"cycle":"one-time","amount":300,"charged_amount":300,"appfee":0,"merchantfee":0,"merchantbearsfee":1,"chargeResponseCode":"00","raveRef":"RV315214097725060FE00CEDBB","chargeResponseMessage":"Pending OTP validation","authModelUsed":"AUTH","currency":"NGN","IP":"::ffff:127.0.0.1","narration":"Synergy Group","status":"successful","vbvrespmessage":"N/A","authurl":"NO-URL","vbvrespcode":"N/A","acctvalrespmsg":"Approved Or Completed Successfully","acctvalrespcode":"00","paymentType":"account","paymentPlan":null,"paymentPage":null,"paymentId":"2","fraud_status":"ok","charge_type":"normal","is_live":0,"createdAt":"2018-03-18T21:49:32.000Z","updatedAt":"2018-03-18T21:49:50.000Z","deletedAt":null,"customerId":20391,"AccountId":134,"customer":{"id":20391,"phone":null,"fullName":"Anonymous customer","customertoken":null,"email":"tester@flutter.co","createdAt":"2018-03-18T21:49:32.000Z","updatedAt":"2018-03-18T21:49:32.000Z","deletedAt":null,"AccountId":134}}}`
+
+var successfulMpesaChargeResponse = `{"status":"success","message":"V-COMP","data":{"cycle":"one-time","merchantbearsfee":0,"status":"pending","vbvrespmessage":"N/A","authurl":"N/A","vbvrespcode":"N/A","paymentId":"N/A","charge_type":"normal","is_live":0,"id":118399,"txRef":"'MXX-ASC-4578","redirectUrl":"http://127.0.0","amount":300,"charged_amount":"300.00","authModelUsed":"VBVSECURECODE","flwRef":"N/A","orderRef":"8518284687","currency":"KES","device_fingerprint":"69e6b7f0sb72037aa8428b70fbe03986c","customerId":21338,"paymentType":"mpesa","narration":"FLW-PBF MPESA Transaction ","IP":"::ffff:127.0.0.1","fraud_status":"ok","AccountId":134,"merchantfee":0,"updatedAt":"2018-03-26T00:35:14.000Z","createdAt":"2018-03-26T00:35:14.000Z","business_number":"637747"}}`

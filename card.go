@@ -17,16 +17,16 @@ type Card struct {
 		Shortcode  string `json:"shortcode"`
 	} `json:"card_tokens,omitempty"`
 	ChargeCardURL         string `json:"-"`
-	ValidateCardChargeURL string `json:"-"`
 	Country               string `json:"country"`
 	Currency              string `json:"currency"`
 	Cvv                   int    `json:"cvv"`
 	Expirymonth           string `json:"expirymonth"`
 	Expiryyear            string `json:"expiryyear"`
 	FirstName             string `json:"firstname,omitempty"`
-	LastName              string `json:"lastname,omitempty"`
 	Last4digits           string `json:"last4digits,omitempty"`
+	LastName              string `json:"lastname,omitempty"`
 	Pin                   string `json:"pin"`
+	ValidateCardChargeURL string `json:"-"`
 }
 
 // ChargeURL is an implemenation of the Chargeable interface

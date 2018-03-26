@@ -37,18 +37,19 @@ type ChargeResponse struct {
 // These attributes will not be availabe in all request response
 // Each request will only have attributes that are relevant to it
 type chargeResponseData struct {
-	AccountID                     int                  `json:"AccountId"`
-	IP                            string               `json:"IP"`
-	Acctvalrespcode               interface{}          `json:"acctvalrespcode"`
-	Acctvalrespmsg                interface{}          `json:"acctvalrespmsg"`
-	Amount                        int                  `json:"amount"`
-	Appfee                        float64              `json:"appfee"`
-	AuthModelUsed                 string               `json:"authModelUsed"`
-	Authurl                       string               `json:"authurl"`
-	ChargeResponseCode            string               `json:"chargeResponseCode"`
-	ChargeResponseMessage         string               `json:"chargeResponseMessage"`
-	ChargeType                    string               `json:"charge_type"`
-	ChargedAmount                 float64              `json:"charged_amount"`
+	AccountID             int         `json:"AccountId"`
+	IP                    string      `json:"IP"`
+	Acctvalrespcode       interface{} `json:"acctvalrespcode"`
+	Acctvalrespmsg        interface{} `json:"acctvalrespmsg"`
+	Amount                int         `json:"amount"`
+	Appfee                float64     `json:"appfee"`
+	AuthModelUsed         string      `json:"authModelUsed"`
+	Authurl               string      `json:"authurl"`
+	BusinessNumber        string      `json:"business_number,omitempty"`
+	ChargeResponseCode    string      `json:"chargeResponseCode"`
+	ChargeResponseMessage string      `json:"chargeResponseMessage"`
+	ChargeType            string      `json:"charge_type"`
+	// ChargedAmount                 float64              `json:"charged_amount"`
 	Code                          string               `json:"code"`
 	CreatedAt                     string               `json:"createdAt"`
 	Currency                      string               `json:"currency"`
@@ -129,9 +130,9 @@ func (cr *ChargeRequest) Charge(chargeable Chargeable) (*ChargeResponse, error) 
 	return resp, err
 }
 
-// Validate handles the final part to a resource charge using the provided otp
+// OTPValidation handles the final part to a resource charge using the provided otp
 // returns the server response
-func (cr *ChargeResponse) Validate(otp string) (*ChargeValidationResponse, error) {
+func (cr *ChargeResponse) OTPValidation(otp string) (*ChargeValidationResponse, error) {
 	if cr.PBFPubKey == "" {
 		cr.PBFPubKey = PBFPubKey
 	}
