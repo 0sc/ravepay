@@ -40,7 +40,7 @@ func (tvc *TxnVerificationChecklist) VerifyTransaction() (*TxnVerificationRespon
 
 	resp := &TxnVerificationResponse{}
 	if tvc.VerificationURL == "" {
-		tvc.VerificationURL = TransactionVerificationURL
+		tvc.VerificationURL = buildURL(TransactionVerificationURL)
 	}
 
 	err := sendRequestAndParseResponse("POST", tvc.VerificationURL, tvc, resp)
@@ -64,7 +64,7 @@ func (tvc *TxnVerificationChecklist) VerifyXRequeryTransaction() (*XRQTxnVerific
 	// TODO: XRQT could return a data array depending on the query args. Handle that possibility
 	resp := &XRQTxnVerificationResponse{}
 	if tvc.VerificationURL == "" {
-		tvc.VerificationURL = TransactionVerificationRequeryURL
+		tvc.VerificationURL = buildURL(TransactionVerificationRequeryURL)
 	}
 
 	err := sendRequestAndParseResponse("POST", tvc.VerificationURL, tvc, resp)

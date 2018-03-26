@@ -22,7 +22,7 @@ type MobileMoneyGH struct {
 // it returns the url to be used for charging the given card
 func (gh *MobileMoneyGH) ChargeURL() string {
 	if gh.ChargeRequestURL == "" {
-		gh.ChargeRequestURL = MobileMoneyGHChargeURL
+		gh.ChargeRequestURL = buildURL(MobileMoneyGHChargeURL)
 	}
 	return gh.ChargeRequestURL
 }

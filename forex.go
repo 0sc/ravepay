@@ -1,7 +1,7 @@
 package rave
 
 // FIXME: Done to enable testing
-var forexURL = ForexURL
+var forexURL = buildURL(ForexURL)
 
 // ForexParams type represents allowed params for querying rave's forex endpoint
 type ForexParams struct {

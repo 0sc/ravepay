@@ -292,6 +292,15 @@ func TestTxnVerificationChecklist_VerifyTransaction(t *testing.T) {
 			}
 		})
 	}
+
+	// Test it sets a verification URL if empty
+	tvc := &TxnVerificationChecklist{VerificationURL: ""}
+	baseURL = server.URL
+	tvc.VerifyTransaction()
+
+	if tvc.VerificationURL == "" {
+		t.Errorf("expected TxnVerificationChecklist.VerifyTransaction().VerificationURL not to be mepty")
+	}
 }
 
 func TestTxnVerificationChecklist_VerifyXRequeryTransaction(t *testing.T) {
@@ -484,5 +493,14 @@ func TestTxnVerificationChecklist_VerifyXRequeryTransaction(t *testing.T) {
 				t.Errorf("TxnVerificationChecklist.VerifyXRequeryTransaction() got1 = %v, want %v", got1, tt.want1)
 			}
 		})
+	}
+
+	// Test it sets a verification URL if empty
+	tvc := &TxnVerificationChecklist{VerificationURL: ""}
+	baseURL = server.URL
+	tvc.VerifyXRequeryTransaction()
+
+	if tvc.VerificationURL == "" {
+		t.Errorf("expected TxnVerificationChecklist.VerifyTransaction().VerificationURL not to be mepty")
 	}
 }

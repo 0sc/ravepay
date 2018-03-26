@@ -32,7 +32,7 @@ type Account struct {
 // it returns the url to be used for charging the given account
 func (a *Account) ChargeURL() string {
 	if a.ChargeAccountURL == "" {
-		a.ChargeAccountURL = ChargeAccountURL
+		a.ChargeAccountURL = buildURL(ChargeAccountURL)
 	}
 	return a.ChargeAccountURL
 }
@@ -41,7 +41,7 @@ func (a *Account) ChargeURL() string {
 // it returns the url to be used for validating charge on the given account
 func (a *Account) ValidateChargeURL() string {
 	if a.ValidateAccountChargeURL == "" {
-		a.ValidateAccountChargeURL = ValidateAccountChargeURL
+		a.ValidateAccountChargeURL = buildURL(ValidateAccountChargeURL)
 	}
 	return a.ValidateAccountChargeURL
 }

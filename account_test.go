@@ -18,7 +18,7 @@ func TestAccount_ChargeURL(t *testing.T) {
 		},
 		{
 			name: "set's the object ChargeAccountURL to config's ChargeAccountURL and returns it",
-			want: ChargeAccountURL,
+			want: baseURL + ChargeAccountURL,
 		},
 	}
 	for _, tt := range tests {
@@ -53,7 +53,7 @@ func TestAccount_ValidateChargeURL(t *testing.T) {
 		},
 		{
 			name: "set's the object ValidateAccountChargeURL to the config ValidateAccountChargeURL and returns it",
-			want: ValidateAccountChargeURL,
+			want: baseURL + ValidateAccountChargeURL,
 		},
 	}
 	for _, tt := range tests {

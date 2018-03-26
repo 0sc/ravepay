@@ -1,7 +1,7 @@
 package rave
 
 // FIXME: Done to enable testing
-var refundTxnURL = RefundTxnURL
+var refundTxnURL = buildURL(RefundTxnURL)
 
 // RefundTxnResponse is rave's response for refund txn request
 type RefundTxnResponse struct {

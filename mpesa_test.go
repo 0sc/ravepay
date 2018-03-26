@@ -64,7 +64,7 @@ func TestMpesa_ChargeURL(t *testing.T) {
 		},
 		{
 			name: "set's the object ChargeMpesaURL to config's ChargeURL and returns it",
-			want: ChargeMpesaURL,
+			want: baseURL + ChargeMpesaURL,
 		},
 	}
 	for _, tt := range tests {

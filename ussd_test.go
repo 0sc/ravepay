@@ -21,7 +21,7 @@ func TestUSSD_ChargeURL(t *testing.T) {
 		},
 		{
 			name: "set's the object ChargeMpesaURL to config's ChargeURL and returns it",
-			want: ChargeUSSDURL,
+			want: baseURL + ChargeUSSDURL,
 		},
 	}
 	for _, tt := range tests {

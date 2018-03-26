@@ -9,12 +9,16 @@ import (
 // It has all ussd attributes necessary for rave api ussd referencess
 // It also implements the chargabel interface required for making charge requests
 type USSD struct {
+	AccountBank           string `json:"account_bank"`
+	AccountNumber         string `json:"account_number"`
 	ChargeRequestURL      string `json:"-"`
 	ValidateCardChargeURL string `json:"-"`
 	Country               string `json:"country"`
 	Currency              string `json:"currency"`
 	FirstName             string `json:"firstname,omitempty"`
 	LastName              string `json:"lastname,omitempty"`
+	IsUSSD                string `json:"is_ussd,omitempty"`
+	OrderRef              string `json:"orderRef,omitempty"`
 }
 
 // USSDPaymentInfo is the information necessary for completing mpesa payment
@@ -27,7 +31,7 @@ type USSDPaymentInfo struct {
 // it returns the url to be used for charging the given card
 func (c *USSD) ChargeURL() string {
 	if c.ChargeRequestURL == "" {
-		c.ChargeRequestURL = ChargeUSSDURL
+		c.ChargeRequestURL = buildURL(ChargeUSSDURL)
 	}
 	return c.ChargeRequestURL
 }

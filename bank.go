@@ -8,7 +8,7 @@ type Bank struct {
 }
 
 // FIXME: Done to enable testing
-var listBanksURL = ListBanksURL
+var listBanksURL = buildURL(ListBanksURL)
 
 // ListBanks returns list of banks from the rave api
 // https://flutterwavedevelopers.readme.io/v1.0/reference#list-of-banks

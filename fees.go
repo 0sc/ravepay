@@ -1,7 +1,7 @@
 package rave
 
 // FIXME: Done to enable testing
-var getFeeURL = GetFeeURL
+var getFeeURL = buildURL(GetFeeURL)
 
 // GetFeeRequest encapsulates the params need for requesting fee amount from the rave api
 // https://flutterwavedevelopers.readme.io/v2.0/reference#get-fees

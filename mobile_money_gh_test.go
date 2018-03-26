@@ -18,7 +18,7 @@ func TestMobileMoneyGH_ChargeURL(t *testing.T) {
 		},
 		{
 			name: "set's the object ChargeGHMobileMoneyURL to config's ChargeURL and returns it",
-			want: MobileMoneyGHChargeURL,
+			want: baseURL + MobileMoneyGHChargeURL,
 		},
 	}
 	for _, tt := range tests {

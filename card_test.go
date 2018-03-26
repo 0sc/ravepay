@@ -18,7 +18,7 @@ func TestCard_ChargeURL(t *testing.T) {
 		},
 		{
 			name: "set's the object ChargeCardURL to config's ChargeCardURL and returns it",
-			want: ChargeCardURL,
+			want: baseURL + ChargeCardURL,
 		},
 	}
 	for _, tt := range tests {
