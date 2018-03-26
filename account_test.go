@@ -17,8 +17,8 @@ func TestAccount_ChargeURL(t *testing.T) {
 			want:   "https://charge.account.url",
 		},
 		{
-			name: "set's the object ChargeAccountURL to config's ChargeAccountURL and returns it",
-			want: baseURL + ChargeAccountURL,
+			name: "set's the object ChargeAccountURL to config's defaultChargeURL and returns it",
+			want: baseURL + defaultChargeURL,
 		},
 	}
 	for _, tt := range tests {

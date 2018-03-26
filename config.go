@@ -9,11 +9,7 @@ const (
 	TransactionVerificationURL        = "/flwv3-pug/getpaidx/api/verify"
 	TransactionVerificationRequeryURL = "/flwv3-pug/getpaidx/api/xrequery"
 
-	defaultChargeURL       = "/flwv3-pug/getpaidx/api/charge"
-	ChargeCardURL          = "/flwv3-pug/getpaidx/api/charge"
-	ChargeMpesaURL         = "/flwv3-pug/getpaidx/api/charge"
-	ChargeAccountURL       = "/flwv3-pug/getpaidx/api/charge"
-	MobileMoneyGHChargeURL = "/flwv3-pug/getpaidx/api/charge"
+	defaultChargeURL = "/flwv3-pug/getpaidx/api/charge"
 
 	ChargeUSSDURL            = "/flwv3-pug/getpaidx/api/validatecharge"
 	ValidateCardChargeURL    = "/flwv3-pug/getpaidx/api/validatecharge"

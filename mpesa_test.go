@@ -63,8 +63,8 @@ func TestMpesa_ChargeURL(t *testing.T) {
 			want:   "https://charge.mpesa.url",
 		},
 		{
-			name: "set's the object ChargeMpesaURL to config's ChargeURL and returns it",
-			want: baseURL + ChargeMpesaURL,
+			name: "set's the object ChargeMpesaURL to config's defaultChargeURL and returns it",
+			want: baseURL + defaultChargeURL,
 		},
 	}
 	for _, tt := range tests {

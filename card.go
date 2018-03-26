@@ -33,7 +33,7 @@ type Card struct {
 // it returns the url to be used for charging the given card
 func (c *Card) ChargeURL() string {
 	if c.ChargeCardURL == "" {
-		c.ChargeCardURL = buildURL(ChargeCardURL)
+		c.ChargeCardURL = buildURL(defaultChargeURL)
 	}
 	return c.ChargeCardURL
 }

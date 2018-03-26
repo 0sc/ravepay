@@ -28,7 +28,7 @@ type MpesaPaymentInfo struct {
 // it returns the url to be used for charging the given card
 func (m *Mpesa) ChargeURL() string {
 	if m.ChargeMpesaURL == "" {
-		m.ChargeMpesaURL = buildURL(ChargeMpesaURL)
+		m.ChargeMpesaURL = buildURL(defaultChargeURL)
 	}
 	return m.ChargeMpesaURL
 }

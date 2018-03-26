@@ -32,7 +32,7 @@ type Account struct {
 // it returns the url to be used for charging the given account
 func (a *Account) ChargeURL() string {
 	if a.ChargeAccountURL == "" {
-		a.ChargeAccountURL = buildURL(ChargeAccountURL)
+		a.ChargeAccountURL = buildURL(defaultChargeURL)
 	}
 	return a.ChargeAccountURL
 }
