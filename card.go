@@ -42,7 +42,7 @@ func (c *Card) ChargeURL() string {
 // it returns the url to be used for charging the given card
 func (c *Card) ValidateChargeURL() string {
 	if c.ValidateCardChargeURL == "" {
-		c.ValidateCardChargeURL = ValidateCardChargeURL
+		c.ValidateCardChargeURL = buildURL(validateCardChargeURL)
 	}
 	return c.ValidateCardChargeURL
 }

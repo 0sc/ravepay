@@ -9,7 +9,7 @@ func TestForexRate(t *testing.T) {
 	handler := &testServer{}
 	server := httptest.NewServer(handler)
 	defer server.Close()
-	forexURL = server.URL
+	fxURL = server.URL
 
 	type args struct {
 		fxp *ForexParams

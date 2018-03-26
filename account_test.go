@@ -52,8 +52,8 @@ func TestAccount_ValidateChargeURL(t *testing.T) {
 			want:   "https://validate.account.charge.url",
 		},
 		{
-			name: "set's the object ValidateAccountChargeURL to the config ValidateAccountChargeURL and returns it",
-			want: baseURL + ValidateAccountChargeURL,
+			name: "set's the object ValidateAccountChargeURL to the config validateAccountChargeURL and returns it",
+			want: baseURL + validateAccountChargeURL,
 		},
 	}
 	for _, tt := range tests {

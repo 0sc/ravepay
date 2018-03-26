@@ -125,8 +125,7 @@ func (cr *ChargeRequest) Charge(chargeable Chargeable) (*ChargeResponse, error) 
 	resp := &ChargeResponse{}
 	err := sendRequestAndParseResponse("POST", chargeable.ChargeURL(), payload, resp)
 	resp.ValidateChargeURL = chargeable.ValidateChargeURL()
-	// r, err := sendRequest("POST", chargeable.ChargeURL(), payload)
-	// io.Copy(os.Stdout, r.Body)
+
 	return resp, err
 }
 
@@ -153,7 +152,5 @@ func (cr *ChargeResponse) OTPValidation(otp string) (*ChargeValidationResponse, 
 	resp := &ChargeValidationResponse{}
 	err := sendRequestAndParseResponse("POST", cr.ValidateChargeURL, payload, resp)
 
-	// r, err := sendRequest("POST", cr.ValidateChargeURL, payload)
-	// io.Copy(os.Stdout, r.Body)
 	return resp, err
 }

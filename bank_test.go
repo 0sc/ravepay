@@ -35,7 +35,7 @@ func TestListBanks(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			handler.resp = []byte(listBanksResp)
-			listBanksURL = server.URL
+			banksURL = server.URL
 
 			got, err := ListBanks()
 			if (err != nil) != tt.wantErr {

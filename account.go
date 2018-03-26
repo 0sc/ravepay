@@ -41,7 +41,7 @@ func (a *Account) ChargeURL() string {
 // it returns the url to be used for validating charge on the given account
 func (a *Account) ValidateChargeURL() string {
 	if a.ValidateAccountChargeURL == "" {
-		a.ValidateAccountChargeURL = buildURL(ValidateAccountChargeURL)
+		a.ValidateAccountChargeURL = buildURL(validateAccountChargeURL)
 	}
 	return a.ValidateAccountChargeURL
 }

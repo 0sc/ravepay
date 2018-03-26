@@ -2,8 +2,8 @@ package rave
 
 // FIXME: Done to enable testing
 var (
-	capturePreAuthURL      = buildURL(CapturePreAuthPaymentURL)
-	voidorRefundPreAuthURL = buildURL(VoidorRefundPreAuthURL)
+	capturePreAuthURL      = buildURL(capturePreAuthPaymentURL)
+	voidorRefundPreAuthURL = buildURL(voidOrRefundPreAuthURL)
 )
 
 // CapturePreAuthPayment makes request to rave's capture endpoint to claim preauth payments

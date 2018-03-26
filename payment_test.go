@@ -30,7 +30,7 @@ func TestNewTxnVerificationChecklist(t *testing.T) {
 				FlwRef:              "some-flw-ref",
 				TransactionCurrency: "NGN",
 				SECKEY:              "some-sec-key",
-				VerificationURL:     TransactionVerificationURL,
+				VerificationURL:     baseURL + txnVerificationURL,
 			},
 		},
 	}
@@ -72,7 +72,7 @@ func TestNewXRQTxnVerificationChecklist(t *testing.T) {
 				LastAttempt:         "1",
 				OnlySuccessful:      "1",
 				SECKEY:              "some-sec-key",
-				VerificationURL:     TransactionVerificationRequeryURL,
+				VerificationURL:     baseURL + txnVerificationRequeryURL,
 			},
 		},
 	}

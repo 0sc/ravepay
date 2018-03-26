@@ -31,7 +31,7 @@ type USSDPaymentInfo struct {
 // it returns the url to be used for charging the given card
 func (c *USSD) ChargeURL() string {
 	if c.ChargeRequestURL == "" {
-		c.ChargeRequestURL = buildURL(ChargeUSSDURL)
+		c.ChargeRequestURL = buildURL(defaultChargeURL)
 	}
 	return c.ChargeRequestURL
 }

@@ -25,7 +25,7 @@ func NewTxnVerificationChecklist(amount int, flwRef, currency, secKey string) *T
 		FlwRef:              flwRef,
 		TransactionCurrency: currency,
 		SECKEY:              secKey,
-		VerificationURL:     TransactionVerificationURL,
+		VerificationURL:     buildURL(txnVerificationURL),
 	}
 }
 
@@ -43,6 +43,6 @@ func NewXRQTxnVerificationChecklist(amount int, flwRef, txRef, currency, secKey 
 		TxRef:               txRef,
 		Txref:               txRef,
 		SECKEY:              secKey,
-		VerificationURL:     TransactionVerificationRequeryURL,
+		VerificationURL:     buildURL(txnVerificationRequeryURL),
 	}
 }

@@ -1,7 +1,7 @@
 package rave
 
 // FIXME: Done to enable testing
-var refundTxnURL = buildURL(RefundTxnURL)
+var rTxnURL = buildURL(refundTxnURL)
 
 // RefundTxnResponse is rave's response for refund txn request
 type RefundTxnResponse struct {
@@ -29,6 +29,6 @@ func Refund(ref string) (*RefundTxnResponse, error) {
 		FlwRef string `json:"ref"`
 	}{SecretKey, ref}
 
-	err := sendRequestAndParseResponse("POST", refundTxnURL, payload, resp)
+	err := sendRequestAndParseResponse("POST", rTxnURL, payload, resp)
 	return resp, err
 }

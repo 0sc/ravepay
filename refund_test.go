@@ -9,7 +9,7 @@ func TestRefund(t *testing.T) {
 	handler := &testServer{}
 	server := httptest.NewServer(handler)
 	defer server.Close()
-	refundTxnURL = server.URL
+	rTxnURL = server.URL
 
 	type args struct {
 		ref string

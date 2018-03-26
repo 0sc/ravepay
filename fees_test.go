@@ -10,7 +10,7 @@ func TestGetFee(t *testing.T) {
 	server := httptest.NewServer(handler)
 	defer server.Close()
 	handler.resp = []byte(getFeeResponse)
-	getFeeURL = server.URL
+	feeURL = server.URL
 
 	type args struct {
 		p *GetFeeRequest

@@ -8,13 +8,13 @@ type Bank struct {
 }
 
 // FIXME: Done to enable testing
-var listBanksURL = buildURL(ListBanksURL)
+var banksURL = buildURL(listBanksURL)
 
 // ListBanks returns list of banks from the rave api
 // https://flutterwavedevelopers.readme.io/v1.0/reference#list-of-banks
 func ListBanks() ([]Bank, error) {
 	banks := []Bank{}
 
-	err := sendRequestAndParseResponse("GET", listBanksURL, nil, &banks)
+	err := sendRequestAndParseResponse("GET", banksURL, nil, &banks)
 	return banks, err
 }

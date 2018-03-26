@@ -1,7 +1,7 @@
 package rave
 
 // FIXME: Done to enable testing
-var forexURL = buildURL(ForexURL)
+var fxURL = buildURL(forexURL)
 
 // ForexParams type represents allowed params for querying rave's forex endpoint
 type ForexParams struct {
@@ -33,6 +33,6 @@ func ForexRate(fxp *ForexParams) (*ForexResponse, error) {
 	}
 
 	resp := &ForexResponse{}
-	err := sendRequestAndParseResponse("POST", forexURL, fxp, resp)
+	err := sendRequestAndParseResponse("POST", fxURL, fxp, resp)
 	return resp, err
 }

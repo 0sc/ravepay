@@ -53,7 +53,7 @@ func TestCard_ValidateChargeURL(t *testing.T) {
 		},
 		{
 			name: "set's the object ValidateCardChargeURL to the config ValidateCardChargeURL and returns it",
-			want: ValidateCardChargeURL,
+			want: baseURL + validateCardChargeURL,
 		},
 	}
 	for _, tt := range tests {

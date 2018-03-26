@@ -5,21 +5,19 @@ import (
 )
 
 const (
-	// TransactionVerificationURL is Rave's verification URL
-	TransactionVerificationURL        = "/flwv3-pug/getpaidx/api/verify"
-	TransactionVerificationRequeryURL = "/flwv3-pug/getpaidx/api/xrequery"
+	txnVerificationURL        = "/flwv3-pug/getpaidx/api/verify"
+	txnVerificationRequeryURL = "/flwv3-pug/getpaidx/api/xrequery"
 
 	defaultChargeURL = "/flwv3-pug/getpaidx/api/charge"
 
-	ChargeUSSDURL            = "/flwv3-pug/getpaidx/api/validatecharge"
-	ValidateCardChargeURL    = "/flwv3-pug/getpaidx/api/validatecharge"
-	ValidateAccountChargeURL = "/flwv3-pug/getpaidx/api/validate"
-	ListBanksURL             = "/flwv3-pug/getpaidx/api/flwpbf-banks.js?json=1"
-	CapturePreAuthPaymentURL = "/flwv3-pug/getpaidx/api/capture"
-	VoidorRefundPreAuthURL   = "/flwv3-pug/getpaidx/api/refundorvoid"
-	GetFeeURL                = "/flwv3-pug/getpaidx/api/fee"
-	RefundTxnURL             = "/gpx/merchant/transactions/refund"
-	ForexURL                 = "/flwv3-pug/getpaidx/api/forex"
+	validateCardChargeURL    = "/flwv3-pug/getpaidx/api/validatecharge"
+	validateAccountChargeURL = "/flwv3-pug/getpaidx/api/validate"
+	listBanksURL             = "/flwv3-pug/getpaidx/api/flwpbf-banks.js?json=1"
+	capturePreAuthPaymentURL = "/flwv3-pug/getpaidx/api/capture"
+	voidOrRefundPreAuthURL   = "/flwv3-pug/getpaidx/api/refundorvoid"
+	getFeeURL                = "/flwv3-pug/getpaidx/api/fee"
+	refundTxnURL             = "/gpx/merchant/transactions/refund"
+	forexURL                 = "/flwv3-pug/getpaidx/api/forex"
 
 	testModeBaseURL = "http://flw-pms-dev.eu-west-1.elasticbeanstalk.com"
 	liveModeBaseURL = "https://api.ravepay.co"
