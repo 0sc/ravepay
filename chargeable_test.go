@@ -290,6 +290,73 @@ func TestChargeRequest_Charge(t *testing.T) {
 			serverResp: successfulMpesaChargeResponse,
 			wantErr:    false,
 		},
+		{
+			name: "returns response if charge mobile money gh request succeeds",
+			fields: fields{
+				PBFPubKey:         "FLWPUBK-e634d14d9ded04eaf05d5b63a0a06d2f-X",
+				Amount:            300,
+				Email:             "tester@flutter.co",
+				IP:                "103.238.105.185",
+				TxRef:             "'MXX-ASC-4578",
+				DeviceFingerprint: "69e6b7f0sb72037aa8428b70fbe03986c",
+				PaymentType:       "mpesa",
+			},
+			args: args{
+				chargeable: &Mpesa{
+					Currency:       "KES",
+					Country:        "KE",
+					FirstName:      "jsksk",
+					LastName:       "ioeoe",
+					IsMpesa:        "1",
+					ChargeMpesaURL: server.URL,
+				},
+			},
+			want: &ChargeResponse{
+				Message: "V-COMP",
+				Status:  "success",
+				Data: chargeResponseData{
+					AccountID:             48,
+					Amount:                3,
+					Appfee:                0.037500000000000006,
+					AuthModelUsed:         "MOBILEMONEY",
+					Authurl:               "NO-URL",
+					ChargeType:            "normal",
+					ChargeResponseCode:    "02",
+					ChargeResponseMessage: "pending charge processing",
+					CreatedAt:             "2018-03-08T16:57:23.000Z",
+					Currency:              "GHS",
+					CustomerID:            437599,
+					Customer: Customer{
+						ID:        437599,
+						Phone:     "5475309092",
+						FullName:  "temi desola",
+						Email:     "user@example.com",
+						CreatedAt: "2018-03-08T16:57:23.000Z",
+						UpdatedAt: "2018-03-08T16:57:23.000Z",
+						AccountID: 48,
+					},
+					Cycle:               "one-time",
+					DeviceFingerprint:   "69e6b7f0b72037aa8428b70fbe03986c",
+					FlwRef:              "FLWMM1522085245161",
+					FraudStatus:         "ok",
+					ID:                  690055,
+					IP:                  "::ffff:10.5.186.67",
+					Narration:           "Raver",
+					Merchantbearsfee:    1,
+					PaymentID:           "N/A",
+					PaymentType:         "mobilemoneygh",
+					RedirectURL:         "http://127.0.0",
+					Status:              "success-pending-validation",
+					TxRef:               "MC-1520528216374",
+					UpdatedAt:           "2018-03-08T16:57:26.000Z",
+					ValidateInstruction: "pending charge processing",
+					Vbvrespcode:         "N/A",
+					Vbvrespmessage:      "N/A",
+				},
+			},
+			serverResp: successfulMobileMoneyGHChargeResponse,
+			wantErr:    false,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -413,3 +480,5 @@ var successfulValidateChargeCardResponse = `{"status":"success","message":"Charg
 var successfulValidateChargeAccountResponse = `{"status":"success","message":"Charge Complete","data":{"id":113767,"txRef":"'MXX-ASC-4578","orderRef":"URF_1521409772957_2716735","flwRef":"ACHG-1521409773573","redirectUrl":"http://127.0.0","device_fingerprint":"69e6b7f0sb72037aa8428b70fbe03986c","settlement_token":null,"cycle":"one-time","amount":300,"charged_amount":300,"appfee":0,"merchantfee":0,"merchantbearsfee":1,"chargeResponseCode":"00","raveRef":"RV315214097725060FE00CEDBB","chargeResponseMessage":"Pending OTP validation","authModelUsed":"AUTH","currency":"NGN","IP":"::ffff:127.0.0.1","narration":"Synergy Group","status":"successful","vbvrespmessage":"N/A","authurl":"NO-URL","vbvrespcode":"N/A","acctvalrespmsg":"Approved Or Completed Successfully","acctvalrespcode":"00","paymentType":"account","paymentPlan":null,"paymentPage":null,"paymentId":"2","fraud_status":"ok","charge_type":"normal","is_live":0,"createdAt":"2018-03-18T21:49:32.000Z","updatedAt":"2018-03-18T21:49:50.000Z","deletedAt":null,"customerId":20391,"AccountId":134,"customer":{"id":20391,"phone":null,"fullName":"Anonymous customer","customertoken":null,"email":"tester@flutter.co","createdAt":"2018-03-18T21:49:32.000Z","updatedAt":"2018-03-18T21:49:32.000Z","deletedAt":null,"AccountId":134}}}`
 
 var successfulMpesaChargeResponse = `{"status":"success","message":"V-COMP","data":{"cycle":"one-time","merchantbearsfee":0,"status":"pending","vbvrespmessage":"N/A","authurl":"N/A","vbvrespcode":"N/A","paymentId":"N/A","charge_type":"normal","is_live":0,"id":118399,"txRef":"'MXX-ASC-4578","redirectUrl":"http://127.0.0","amount":300,"charged_amount":"300.00","authModelUsed":"VBVSECURECODE","flwRef":"N/A","orderRef":"8518284687","currency":"KES","device_fingerprint":"69e6b7f0sb72037aa8428b70fbe03986c","customerId":21338,"paymentType":"mpesa","narration":"FLW-PBF MPESA Transaction ","IP":"::ffff:127.0.0.1","fraud_status":"ok","AccountId":134,"merchantfee":0,"updatedAt":"2018-03-26T00:35:14.000Z","createdAt":"2018-03-26T00:35:14.000Z","business_number":"637747"}}`
+
+var successfulMobileMoneyGHChargeResponse = `{"status":"success","message":"V-COMP","data":{"id":690055,"txRef":"MC-1520528216374","orderRef":null,"flwRef":"FLWMM1522085245161","redirectUrl":"http://127.0.0","device_fingerprint":"69e6b7f0b72037aa8428b70fbe03986c","settlement_token":null,"cycle":"one-time","amount":3,"charged_amount":3,"appfee":0.037500000000000006,"merchantfee":0,"merchantbearsfee":1,"chargeResponseCode":"02","raveRef":null,"chargeResponseMessage":"pending charge processing","authModelUsed":"MOBILEMONEY","currency":"GHS","IP":"::ffff:10.5.186.67","narration":"Raver","status":"success-pending-validation","vbvrespmessage":"N/A","authurl":"NO-URL","vbvrespcode":"N/A","acctvalrespmsg":null,"acctvalrespcode":null,"paymentType":"mobilemoneygh","paymentPlan":null,"paymentPage":null,"paymentId":"N/A","fraud_status":"ok","charge_type":"normal","is_live":0,"createdAt":"2018-03-08T16:57:23.000Z","updatedAt":"2018-03-08T16:57:26.000Z","deletedAt":null,"customerId":437599,"AccountId":48,"customer":{"id":437599,"phone":"5475309092","fullName":"temi desola","customertoken":null,"email":"user@example.com","createdAt":"2018-03-08T16:57:23.000Z","updatedAt":"2018-03-08T16:57:23.000Z","deletedAt":null,"AccountId":48},"validateInstruction":"pending charge processing"}}`

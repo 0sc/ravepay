@@ -8,6 +8,7 @@ const (
 	ChargeMpesaURL                    = "http://flw-pms-dev.eu-west-1.elasticbeanstalk.com/flwv3-pug/getpaidx/api/charge"
 	ValidateCardChargeURL             = "http://flw-pms-dev.eu-west-1.elasticbeanstalk.com/flwv3-pug/getpaidx/api/validatecharge"
 	ChargeAccountURL                  = "http://flw-pms-dev.eu-west-1.elasticbeanstalk.com/flwv3-pug/getpaidx/api/charge"
+	MobileMoneyGHChargeURL            = "http://flw-pms-dev.eu-west-1.elasticbeanstalk.com/flwv3-pug/getpaidx/api/charge"
 	ValidateAccountChargeURL          = "http://flw-pms-dev.eu-west-1.elasticbeanstalk.com/flwv3-pug/getpaidx/api/validate"
 	ListBanksURL                      = "http://flw-pms-dev.eu-west-1.elasticbeanstalk.com/flwv3-pug/getpaidx/api/flwpbf-banks.js?json=1"
 	SecretKey                         = "FLWSECK-bb971402072265fb156e90a3578fe5e6-X"
