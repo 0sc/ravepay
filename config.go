@@ -6,6 +6,7 @@ const (
 	TransactionVerificationRequeryURL = "http://flw-pms-dev.eu-west-1.elasticbeanstalk.com/flwv3-pug/getpaidx/api/xrequery"
 	ChargeCardURL                     = "http://flw-pms-dev.eu-west-1.elasticbeanstalk.com/flwv3-pug/getpaidx/api/charge"
 	ChargeMpesaURL                    = "http://flw-pms-dev.eu-west-1.elasticbeanstalk.com/flwv3-pug/getpaidx/api/charge"
+	ChargeUSSDURL                     = "http://flw-pms-dev.eu-west-1.elasticbeanstalk.com/flwv3-pug/getpaidx/api/validatecharge"
 	ValidateCardChargeURL             = "http://flw-pms-dev.eu-west-1.elasticbeanstalk.com/flwv3-pug/getpaidx/api/validatecharge"
 	ChargeAccountURL                  = "http://flw-pms-dev.eu-west-1.elasticbeanstalk.com/flwv3-pug/getpaidx/api/charge"
 	MobileMoneyGHChargeURL            = "http://flw-pms-dev.eu-west-1.elasticbeanstalk.com/flwv3-pug/getpaidx/api/charge"

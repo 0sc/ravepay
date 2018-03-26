@@ -34,9 +34,7 @@ func TestMpesaPaymentInstruction(t *testing.T) {
 		{
 			name: "returns the mpesa payment info-2",
 			args: args{
-				cr: &ChargeResponse{
-					Data: chargeResponseData{},
-				},
+				cr: &ChargeResponse{},
 			},
 			want: &MpesaPaymentInfo{},
 		},

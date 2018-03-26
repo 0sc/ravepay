@@ -59,7 +59,7 @@ func (m *Mpesa) BuildChargeRequestPayload(cReq *ChargeRequest) []byte {
 }
 
 // MpesaPaymentInstruction parses the given charge response
-// and returns the business number and account number for completing the payment
+// and returns the payment info: business number and account number for completing the payment
 func MpesaPaymentInstruction(cr *ChargeResponse) *MpesaPaymentInfo {
 	return &MpesaPaymentInfo{
 		Amount:         cr.Data.Amount,

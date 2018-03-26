@@ -5,7 +5,7 @@ import (
 	"log"
 )
 
-// MobileMoney is a type that encapsulates rave's ghana mobile money description
+// MobileMoneyGH is a type that encapsulates rave's ghana mobile money description
 // It has all mpesa attributes necessary for rave api ghana mobile money description references
 // It also implements the chargable interface required for making charge requests and validating them
 type MobileMoneyGH struct {

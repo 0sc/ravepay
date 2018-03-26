@@ -357,6 +357,38 @@ func TestChargeRequest_Charge(t *testing.T) {
 			serverResp: successfulMobileMoneyGHChargeResponse,
 			wantErr:    false,
 		},
+		{
+			name: "returns response for charge ussd request",
+			fields: fields{
+				PBFPubKey:         "FLWPUBK-e634d14d9ded04eaf05d5b63a0a06d2f-X",
+				Amount:            300,
+				Email:             "tester@flutter.co",
+				IP:                "103.238.105.185",
+				TxRef:             "'MXX-ASC-4578",
+				DeviceFingerprint: "69e6b7f0sb72037aa8428b70fbe03986c",
+				PaymentType:       "mpesa",
+			},
+			args: args{
+				chargeable: &USSD{
+					Currency:         "NGN",
+					Country:          "NG",
+					FirstName:        "jsksk",
+					LastName:         "ioeoe",
+					ChargeRequestURL: server.URL,
+				},
+			},
+			want: &ChargeResponse{
+				Message: "V-COMP",
+				Status:  "success",
+				Data: chargeResponseData{
+					Amount: 300,
+					FlwRef: "FLWMM1522085245161",
+					Status: "pending",
+				},
+			},
+			serverResp: successfulUSSDChargeRequest,
+			wantErr:    false,
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -482,3 +514,5 @@ var successfulValidateChargeAccountResponse = `{"status":"success","message":"Ch
 var successfulMpesaChargeResponse = `{"status":"success","message":"V-COMP","data":{"cycle":"one-time","merchantbearsfee":0,"status":"pending","vbvrespmessage":"N/A","authurl":"N/A","vbvrespcode":"N/A","paymentId":"N/A","charge_type":"normal","is_live":0,"id":118399,"txRef":"'MXX-ASC-4578","redirectUrl":"http://127.0.0","amount":300,"charged_amount":"300.00","authModelUsed":"VBVSECURECODE","flwRef":"N/A","orderRef":"8518284687","currency":"KES","device_fingerprint":"69e6b7f0sb72037aa8428b70fbe03986c","customerId":21338,"paymentType":"mpesa","narration":"FLW-PBF MPESA Transaction ","IP":"::ffff:127.0.0.1","fraud_status":"ok","AccountId":134,"merchantfee":0,"updatedAt":"2018-03-26T00:35:14.000Z","createdAt":"2018-03-26T00:35:14.000Z","business_number":"637747"}}`
 
 var successfulMobileMoneyGHChargeResponse = `{"status":"success","message":"V-COMP","data":{"id":690055,"txRef":"MC-1520528216374","orderRef":null,"flwRef":"FLWMM1522085245161","redirectUrl":"http://127.0.0","device_fingerprint":"69e6b7f0b72037aa8428b70fbe03986c","settlement_token":null,"cycle":"one-time","amount":3,"charged_amount":3,"appfee":0.037500000000000006,"merchantfee":0,"merchantbearsfee":1,"chargeResponseCode":"02","raveRef":null,"chargeResponseMessage":"pending charge processing","authModelUsed":"MOBILEMONEY","currency":"GHS","IP":"::ffff:10.5.186.67","narration":"Raver","status":"success-pending-validation","vbvrespmessage":"N/A","authurl":"NO-URL","vbvrespcode":"N/A","acctvalrespmsg":null,"acctvalrespcode":null,"paymentType":"mobilemoneygh","paymentPlan":null,"paymentPage":null,"paymentId":"N/A","fraud_status":"ok","charge_type":"normal","is_live":0,"createdAt":"2018-03-08T16:57:23.000Z","updatedAt":"2018-03-08T16:57:26.000Z","deletedAt":null,"customerId":437599,"AccountId":48,"customer":{"id":437599,"phone":"5475309092","fullName":"temi desola","customertoken":null,"email":"user@example.com","createdAt":"2018-03-08T16:57:23.000Z","updatedAt":"2018-03-08T16:57:23.000Z","deletedAt":null,"AccountId":48},"validateInstruction":"pending charge processing"}}`
+
+var successfulUSSDChargeRequest = `{"status":"success","message":"V-COMP","data":{"status":"pending","amount":300,"charged_amount":"300.00","flwRef":"FLWMM1522085245161"}}`
