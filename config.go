@@ -28,19 +28,19 @@ var (
 	currentMode = "test"
 	baseURL     = testModeBaseURL
 
-	// PBFPubKey is your rave secret key
-	PBFPubKey string
+	// PublicKey is your rave secret key
+	PublicKey string
 	// SecretKey is your rave secret key
 	SecretKey string
 )
 
 func init() {
-	if pubKey := os.Getenv("RAVE_PBFPUB_KEY"); pubKey != "" {
-		PBFPubKey = pubKey
+	if key := os.Getenv("RAVE_PUBLIC_KEY"); key != "" {
+		PublicKey = key
 	}
 
-	if secKey := os.Getenv("RAVE_SECRET_KEY"); secKey != "" {
-		SecretKey = secKey
+	if key := os.Getenv("RAVE_SECRET_KEY"); key != "" {
+		SecretKey = key
 	}
 
 	if mode := os.Getenv("RAVE_MODE"); mode == "live" {

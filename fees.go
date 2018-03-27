@@ -30,7 +30,7 @@ type GetFeeResponse struct {
 func GetFee(p *GetFeeRequest) (*GetFeeResponse, error) {
 	// TODO: add request params validation
 	if p.PBFPubKey == "" {
-		p.PBFPubKey = PBFPubKey
+		p.PBFPubKey = PublicKey
 	}
 
 	resp := &GetFeeResponse{}

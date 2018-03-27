@@ -133,7 +133,7 @@ func (cr *ChargeRequest) Charge(chargeable Chargeable) (*ChargeResponse, error) 
 // returns the server response
 func (cr *ChargeResponse) OTPValidation(otp string) (*ChargeValidationResponse, error) {
 	if cr.PBFPubKey == "" {
-		cr.PBFPubKey = PBFPubKey
+		cr.PBFPubKey = PublicKey
 	}
 
 	payload := struct {

@@ -12,7 +12,7 @@ type testServer struct {
 }
 
 func TestMain(m *testing.M) {
-	PBFPubKey = os.Getenv("RAVE_PBFPUB_KEY")
+	PublicKey = os.Getenv("RAVE_PUBLIC_KEY")
 	SecretKey = os.Getenv("RAVE_SECRET_KEY")
 	m.Run()
 }

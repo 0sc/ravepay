@@ -31,7 +31,7 @@ func TestGetFee(t *testing.T) {
 				Status:  "success",
 				Message: "Charged fee",
 			},
-			wantPubkey: PBFPubKey,
+			wantPubkey: PublicKey,
 			wantErr:    false,
 		},
 		{
@@ -43,7 +43,7 @@ func TestGetFee(t *testing.T) {
 				Status:  "success",
 				Message: "Charged fee",
 			},
-			wantPubkey: PBFPubKey,
+			wantPubkey: PublicKey,
 			wantErr:    false,
 		},
 		{
