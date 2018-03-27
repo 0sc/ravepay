@@ -3,10 +3,18 @@ package rave
 import (
 	"log"
 	"net/http"
+	"os"
+	"testing"
 )
 
 type testServer struct {
 	resp []byte
+}
+
+func TestMain(m *testing.M) {
+	PBFPubKey = os.Getenv("RAVE_PBFPUB_KEY")
+	SecretKey = os.Getenv("RAVE_SECRET_KEY")
+	m.Run()
 }
 
 func (ts *testServer) ServeHTTP(w http.ResponseWriter, r *http.Request) {

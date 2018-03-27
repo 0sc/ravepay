@@ -2,6 +2,7 @@ package rave
 
 import (
 	"fmt"
+	"os"
 )
 
 const (
@@ -28,10 +29,24 @@ var (
 	baseURL     = testModeBaseURL
 
 	// PBFPubKey is your rave secret key
-	PBFPubKey = "FLWPUBK-e634d14d9ded04eaf05d5b63a0a06d2f-X"
+	PBFPubKey string
 	// SecretKey is your rave secret key
-	SecretKey = "FLWSECK-bb971402072265fb156e90a3578fe5e6-X"
+	SecretKey string
 )
+
+func init() {
+	if pubKey := os.Getenv("RAVE_PBFPUB_KEY"); pubKey != "" {
+		PBFPubKey = pubKey
+	}
+
+	if secKey := os.Getenv("RAVE_SECRET_KEY"); secKey != "" {
+		SecretKey = secKey
+	}
+
+	if mode := os.Getenv("RAVE_MODE"); mode == "live" {
+		SwitchToLiveMode()
+	}
+}
 
 // CurrentMode returns the current mode of operation, live or test
 // This actual variable itself, currentMode is not exposed to prevent direct (external) modification
