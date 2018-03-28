@@ -19,7 +19,7 @@ type Card struct {
 	ChargeCardURL         string `json:"-"`
 	Country               string `json:"country"`
 	Currency              string `json:"currency"`
-	Cvv                   int    `json:"cvv"`
+	Cvv                   string `json:"cvv"`
 	Expirymonth           string `json:"expirymonth"`
 	Expiryyear            string `json:"expiryyear"`
 	FirstName             string `json:"firstname,omitempty"`

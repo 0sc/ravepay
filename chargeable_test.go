@@ -53,7 +53,7 @@ func TestChargeRequest_Charge(t *testing.T) {
 					ValidateCardChargeURL: server.URL,
 					Currency:              "NGN",
 					Country:               "NG",
-					Cvv:                   789,
+					Cvv:                   "789",
 					Expirymonth:           "09",
 					Expiryyear:            "19",
 					Pin:                   "3310",
@@ -116,7 +116,7 @@ func TestChargeRequest_Charge(t *testing.T) {
 					ValidateCardChargeURL: server.URL,
 					Currency:              "NGN",
 					Country:               "NG",
-					Cvv:                   789,
+					Cvv:                   "789",
 					Expirymonth:           "09",
 					Expiryyear:            "19",
 				},
@@ -299,16 +299,14 @@ func TestChargeRequest_Charge(t *testing.T) {
 				IP:                "103.238.105.185",
 				TxRef:             "'MXX-ASC-4578",
 				DeviceFingerprint: "69e6b7f0sb72037aa8428b70fbe03986c",
-				PaymentType:       "mpesa",
+				PaymentType:       "mobilemoneygh",
 			},
 			args: args{
-				chargeable: &Mpesa{
-					Currency:       "KES",
-					Country:        "KE",
-					FirstName:      "jsksk",
-					LastName:       "ioeoe",
-					IsMpesa:        "1",
-					ChargeMpesaURL: server.URL,
+				chargeable: &MobileMoneyGH{
+					Currency:        "GHS",
+					Country:         "GH",
+					Network:         "MTN",
+					IsMobileMoneyGH: 1,
 				},
 			},
 			want: &ChargeResponse{
@@ -366,10 +364,12 @@ func TestChargeRequest_Charge(t *testing.T) {
 				IP:                "103.238.105.185",
 				TxRef:             "'MXX-ASC-4578",
 				DeviceFingerprint: "69e6b7f0sb72037aa8428b70fbe03986c",
-				PaymentType:       "mpesa",
+				PaymentType:       "ussd",
 			},
 			args: args{
 				chargeable: &USSD{
+					AccountBank:      "044",
+					AccountNumber:    "0690000031",
 					Currency:         "NGN",
 					Country:          "NG",
 					FirstName:        "jsksk",
@@ -416,6 +416,14 @@ func TestChargeRequest_Charge(t *testing.T) {
 				t.Errorf("ChargeRequest.Charge() = %+v, want %+v", got, tt.want)
 			}
 		})
+	}
+
+	// it sets the PBFPubKey if empty
+	chargeRequest := ChargeRequest{}
+	chargeRequest.Charge(&Card{ChargeCardURL: server.URL})
+
+	if chargeRequest.PBFPubKey != PublicKey {
+		t.Errorf("chargeRequest.PBFPubKey = %s, want %s", chargeRequest.PBFPubKey, PublicKey)
 	}
 }
 

@@ -36,7 +36,8 @@ func TestNewTxnVerificationChecklist(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := NewTxnVerificationChecklist(tt.args.amount, tt.args.flwRef, tt.args.currency, tt.args.secKey); !reflect.DeepEqual(got, tt.want) {
+			SecretKey = tt.args.secKey
+			if got := NewTxnVerificationChecklist(tt.args.amount, tt.args.flwRef, tt.args.currency); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("NewTxnVerificationChecklist() = %v, want %v", got, tt.want)
 			}
 		})
@@ -78,7 +79,8 @@ func TestNewXRQTxnVerificationChecklist(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := NewXRQTxnVerificationChecklist(tt.args.amount, tt.args.flwRef, tt.args.txRef, tt.args.currency, tt.args.secKey); !reflect.DeepEqual(got, tt.want) {
+			SecretKey = tt.args.secKey
+			if got := NewXRQTxnVerificationChecklist(tt.args.amount, tt.args.flwRef, tt.args.txRef, tt.args.currency); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("NewXRQTxnVerificationChecklist() = %+v, want %+v", got, tt.want)
 			}
 		})

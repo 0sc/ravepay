@@ -7,10 +7,10 @@ import (
 
 // USSD is a type that encapsulates rave's ussd description
 // It has all ussd attributes necessary for rave api ussd referencess
-// It also implements the chargabel interface required for making charge requests
+// It also implements the chargable interface required for making charge requests
 type USSD struct {
-	AccountBank           string `json:"account_bank"`
-	AccountNumber         string `json:"account_number"`
+	AccountBank           string `json:"accountbank"` // vs account_bank
+	AccountNumber         string `json:"accountnumber"`
 	ChargeRequestURL      string `json:"-"`
 	ValidateCardChargeURL string `json:"-"`
 	Country               string `json:"country"`

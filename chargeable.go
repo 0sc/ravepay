@@ -107,6 +107,9 @@ type ChargeValidationResponse struct {
 // Charge makes the request to charge the given card
 // it returns the response from the server
 func (cr *ChargeRequest) Charge(chargeable Chargeable) (*ChargeResponse, error) {
+	if cr.PBFPubKey == "" {
+		cr.PBFPubKey = PublicKey
+	}
 	encryptionKey := getEncryptionKey(SecretKey)
 	reqPayload := chargeable.BuildChargeRequestPayload(cr)
 

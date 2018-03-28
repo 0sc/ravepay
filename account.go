@@ -9,7 +9,7 @@ import (
 // It has all account attributes necessary for rave api card references
 // It also implements the chargable interface required for making charge requests and validating them
 type Account struct {
-	AccountBank          string `json:"account_bank"`
+	AccountBank          string `json:"account_bank"` // TODO: account_bank vs accountbank
 	AccountIsBlacklisted int    `json:"account_is_blacklisted"`
 	AccountNumber        string `json:"account_number"`
 	AccountToken         struct {

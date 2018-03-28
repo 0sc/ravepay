@@ -18,20 +18,20 @@ type Payment struct {
 }
 
 // NewTxnVerificationChecklist returns a new paymentVerificationChecklist object with the given params
-func NewTxnVerificationChecklist(amount int, flwRef, currency, secKey string) *TxnVerificationChecklist {
+func NewTxnVerificationChecklist(amount int, flwRef, currency string) *TxnVerificationChecklist {
 	return &TxnVerificationChecklist{
 		Amount:              amount,
 		Done:                false,
 		FlwRef:              flwRef,
 		TransactionCurrency: currency,
-		SECKEY:              secKey,
+		SECKEY:              SecretKey,
 		VerificationURL:     buildURL(txnVerificationURL),
 	}
 }
 
 // NewXRQTxnVerificationChecklist returns a new paymentVerificationChecklist object with the given params
 // It sets up the checklist to use the rave's xrequery transaction verification endpoint
-func NewXRQTxnVerificationChecklist(amount int, flwRef, txRef, currency, secKey string) *TxnVerificationChecklist {
+func NewXRQTxnVerificationChecklist(amount int, flwRef, txRef, currency string) *TxnVerificationChecklist {
 	return &TxnVerificationChecklist{
 		Amount:              amount,
 		Done:                false,
@@ -42,7 +42,7 @@ func NewXRQTxnVerificationChecklist(amount int, flwRef, txRef, currency, secKey 
 		TransactionCurrency: currency,
 		TxRef:               txRef,
 		Txref:               txRef,
-		SECKEY:              secKey,
+		SECKEY:              SecretKey,
 		VerificationURL:     buildURL(txnVerificationRequeryURL),
 	}
 }
