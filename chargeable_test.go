@@ -303,10 +303,11 @@ func TestChargeRequest_Charge(t *testing.T) {
 			},
 			args: args{
 				chargeable: &MobileMoneyGH{
-					Currency:        "GHS",
-					Country:         "GH",
-					Network:         "MTN",
-					IsMobileMoneyGH: 1,
+					Currency:         "GHS",
+					Country:          "GH",
+					Network:          "MTN",
+					IsMobileMoneyGH:  1,
+					ChargeRequestURL: server.URL,
 				},
 			},
 			want: &ChargeResponse{
