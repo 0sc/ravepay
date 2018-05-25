@@ -1,4 +1,4 @@
-package rave
+package ravepay
 
 // Bank is a type of rave bank resources
 type Bank struct {

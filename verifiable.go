@@ -1,4 +1,4 @@
-package rave
+package ravepay
 
 // Verifiable is an abstract representation of any rave resources that can be verified
 // verified here
