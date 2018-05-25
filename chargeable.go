@@ -1,4 +1,4 @@
-package rave
+package ravepay
 
 // Chargeable is an abstract representation for chargeable resources
 // like cards and accounts

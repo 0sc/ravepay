@@ -1,4 +1,4 @@
-package rave
+package ravepay
 
 // FIXME: Done to enable testing
 var fxURL = buildURL(forexURL)

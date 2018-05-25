@@ -1,4 +1,4 @@
-package rave
+package ravepay
 
 type FlwMeta struct {
 	ACCOUNTVALIDATIONRESPMESSAGE  interface{} `json:"ACCOUNTVALIDATIONRESPMESSAGE"`

@@ -1,4 +1,4 @@
-package rave
+package ravepay
 
 // Payment is a type that encapsulates rave's concept of payment
 // together with PaymentVerfication it contains required implementations for interacting with the payment APIs

@@ -1,4 +1,4 @@
-package rave
+package ravepay
 
 import (
 	"net/http/httptest"

@@ -1,4 +1,4 @@
-package rave
+package ravepay
 
 type Customer struct {
 	AccountID     int         `json:"AccountId"`
