@@ -12,13 +12,16 @@ import (
 )
 
 func getEncryptionKey(seckey string) string {
+	adjustedSeckey := strings.Replace(seckey, "FLWSECK-", "", 1)
+	if len(adjustedSeckey) < 12 {
+		return ""
+	}
+	adjustedSeckeyFirst12 := adjustedSeckey[:12]
+
 	h := md5.New()
 	io.WriteString(h, seckey)
 	keyMD5 := fmt.Sprintf("%x", h.Sum(nil))
 	keyMD5Last12 := keyMD5[len(keyMD5)-12:]
-
-	adjustedSeckey := strings.Replace(seckey, "FLWSECK-", "", 1)
-	adjustedSeckeyFirst12 := adjustedSeckey[:12]
 
 	return adjustedSeckeyFirst12 + keyMD5Last12
 }

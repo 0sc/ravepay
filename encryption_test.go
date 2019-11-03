@@ -5,28 +5,32 @@ import (
 )
 
 func Test_getEncryptionKey(t *testing.T) {
-	type args struct {
-		seckey string
-	}
 	tests := []struct {
-		name string
-		args args
-		want string
+		name   string
+		seckey string
+		want   string
 	}{
 		{
-			name: "returns the expected encryption key - 1",
-			args: args{"FLWSECK-bb971402072265fb156e90a3578fe5e6-X"},
-			want: "bb9714020722eb4cf7a169f2",
+			name: "return empty if string is empty",
 		},
 		{
-			name: "returns the expected encryption key - 2",
-			args: args{"FLWSECK-6b32914d4d60c10d0ef72bdad734134a-X"},
-			want: "6b32914d4d60cb85d8eb73db",
+			name:   "return empty if string is less than 12",
+			seckey: "1234567",
+		},
+		{
+			name:   "returns the expected encryption key - 1",
+			seckey: "FLWSECK-bb971402072265fb156e90a3578fe5e6-X",
+			want:   "bb9714020722eb4cf7a169f2",
+		},
+		{
+			name:   "returns the expected encryption key - 2",
+			seckey: "FLWSECK-6b32914d4d60c10d0ef72bdad734134a-X",
+			want:   "6b32914d4d60cb85d8eb73db",
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := getEncryptionKey(tt.args.seckey); got != tt.want {
+			if got := getEncryptionKey(tt.seckey); got != tt.want {
 				t.Errorf("getKey() = %v, want %v", got, tt.want)
 			}
 		})

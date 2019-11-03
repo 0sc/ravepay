@@ -1,5 +1,6 @@
 package ravepay
 
+// Customer is a type that encapsulates rave's customer description
 type Customer struct {
 	AccountID     int         `json:"AccountId"`
 	CreatedAt     string      `json:"createdAt"`

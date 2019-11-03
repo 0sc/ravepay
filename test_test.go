@@ -1,9 +1,8 @@
-package rave
+package ravepay
 
 import (
 	"log"
 	"net/http"
-	"os"
 	"testing"
 )
 
@@ -12,8 +11,8 @@ type testServer struct {
 }
 
 func TestMain(m *testing.M) {
-	PublicKey = os.Getenv("RAVE_PUBLIC_KEY")
-	SecretKey = os.Getenv("RAVE_SECRET_KEY")
+	PublicKey = "FLWPUBK-e634d14d9ded04eaf05d5b63a0a06d2f-X"
+	SecretKey = "FLWSECK-bb971402072265fb156e90a3578fe5e6-X"
 	m.Run()
 }
 
